@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
+import EditorPage from './components/EditorPage/EditorPage.jsx'
 import './index.css'
 import About from './pages/About.jsx'
 import Home from './pages/Home.jsx'
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         element: <About />,
       },
     ],
+  },
+  {
+    path: '/editor',
+    element: <EditorPage />,
   },
   { path: '/settings', element: <Settings /> },
 ])
