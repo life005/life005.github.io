@@ -5,12 +5,14 @@ import Header from './components/Header.jsx'
 
 function App() {
   return (
-    <div className='bg-midnight-950 text-midnight-50 flex h-screen w-screen justify-center font-noto'>
-      <div className='w-screen sm:w-[500px] sm:h-[700px]'>
-        <Header />
+    <div className='flex flex-col justify-between bg-midnight-950 text-midnight-50 h-screen w-screen font-noto'>
+      <div>
         <Outlet />
-        <PWABadge />
       </div>
+      <div className='w-screen'>
+        <Header />
+      </div>
+      <PWABadge />
     </div>
   )
 }

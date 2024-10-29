@@ -24,12 +24,19 @@ function EditorPage() {
       },
     ],
   })
-
+  const handleSave = (document) => {
+    console.log(document)
+  }
   // Renders the editor instance using a React component.
   return (
     <div className='h-screen min-h-[500px]'>
       <Navigation title={'Editor'} />
-      <BlockNoteView editor={editor} theme={'dark'} className='dark-theme' />
+      <BlockNoteView
+        editor={editor}
+        theme={'dark'}
+        className='dark-theme'
+        onChange={() => handleSave(editor.document)}
+      />
     </div>
   )
 }
