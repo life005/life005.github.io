@@ -6,12 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
   plugins: [react(), VitePWA({
     registerType: 'autoUpdate',
-    injectRegister: true,
     includeAssets: ["**/*"],
-    pwaAssets: {
-      disabled: true,
-      config: true,
-    },
 
     manifest: {
       name: 'life005',
@@ -21,26 +16,39 @@ export default defineConfig({
       background_color:'#020617',
       icons: [
         {
-          src: 'assets/192.png',
+          src: '192.png',
           sizes: '192x192',
           type: 'image/png'
         },
         {
-          src: 'assets/512.png',
+          src: '512.png',
           sizes: '512x512',
           type: 'image/png'
         }
+      ],
+    },
+    
+    workbox: {
+      globPatterns: ['**/*'],
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+      runtimeCaching:[
+        {
+          urlPattern: /\.(?:js|jsx|css|html|png|jpg|jpeg|svg|gif|webp|woff2?|ttf|otf|json|mp4|webm|ogg)$/, // Cache all static assets
+          handler: 'CacheFirst', // Use CacheFirst strategy for static assets
+          options: {
+            cacheName: 'life-os-static-cache',
+            expiration: {
+              maxEntries: 200, // Maximum number of cached entries
+              maxAgeSeconds: 30 * 24 * 60 * 60, // Cache for 30 days
+            },
+          },
+        },
       ]
     },
 
-    workbox: {
-      globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
-      cleanupOutdatedCaches: true,
-      clientsClaim: true,
-    },
-
     devOptions: {
-      enabled: false,
+      enabled: true,
       navigateFallback: 'index.html',
       suppressWarnings: true,
       type: 'module',

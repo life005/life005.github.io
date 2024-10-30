@@ -7,9 +7,6 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-          "noto": ['Noto Sans', 'sans-serif']
-      },
       colors: {
         "midnight": {
           50: "#D0D8FB",
