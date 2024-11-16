@@ -1,40 +1,35 @@
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import App from './App.jsx'
 import EditorPage from './components/EditorPage/EditorPage.jsx'
 import './index.css'
+import FullPage from './Layouts/FullPage.jsx'
+import RootLayout from './Layouts/RootLayout.jsx'
 import About from './pages/About.jsx'
 import Home from './pages/Home.jsx'
+import Login from './pages/Login.jsx'
 import Settings from './pages/Settings.jsx'
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: 'about',
-        element: <About />,
-      },
-    ],
-  },
-  {
-    path: '/editor',
-    element: <EditorPage />,
-  },
-  { path: '/settings', element: <Settings /> },
-])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AnimatePresence>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<RootLayout />}>
+            <Route path='/:date' element={<App />}>
+              <Route path='/:date' element={<Home />}></Route>
+            </Route>
+            <Route path='/about' element={<About />}></Route>
+            <Route path='/editor/:date' element={<EditorPage />}></Route>
+            <Route path='/settings' element={<Settings />}></Route>
+          </Route>
+          <Route path='/login' element={<FullPage />}>
+            <Route path='/login/' element={<Login />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </AnimatePresence>
   </React.StrictMode>
 )

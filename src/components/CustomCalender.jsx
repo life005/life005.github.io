@@ -1,14 +1,15 @@
-import { addWeeks, format } from 'date-fns'
+import { addWeeks, format, startOfDay } from 'date-fns'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getWeekDates } from '../utils/date'
-
 function CustomCalender() {
-  const today = new Date()
+  const date = startOfDay(new Date())
+  const today = date.getTime()
   const [activeWeek, setActiveWeek] = useState(getWeekDates(today))
   const [currentDate, setCurrentDate] = useState(today)
   const [selectedDate, setSelectedDate] = useState(today)
-
+  const navigate = useNavigate()
   const handleNextWeek = () => {
     const newDate = addWeeks(currentDate, 1)
     setCurrentDate(newDate)
@@ -24,6 +25,7 @@ function CustomCalender() {
   }
   const handleDateClick = (date) => {
     setSelectedDate(date)
+    navigate(`/${new Date(date).getTime()}`)
   }
 
   return (

@@ -9,8 +9,4 @@ export default defineConfig({
     },
     preset,
     images: ['favicon.png'],
-    esbuild:{
-        target:'es2019'
-    }
-    
 })
