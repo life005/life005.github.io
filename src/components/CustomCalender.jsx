@@ -24,8 +24,10 @@ function CustomCalender() {
     return format(currentDate, 'MMMM yyyy') // This gives you the active month and year
   }
   const handleDateClick = (date) => {
-    setSelectedDate(date)
-    navigate(`/${new Date(date).getTime()}`)
+    const clickedDate = startOfDay(new Date(date).getTime())
+    const navdate = clickedDate.getTime()
+    setSelectedDate(clickedDate)
+    navigate(`/${navdate}`)
   }
 
   return (
