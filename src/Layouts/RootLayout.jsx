@@ -6,7 +6,7 @@ import { pbdb } from '../utils/db.js'
 
 function RootLayout() {
   const navigate = useNavigate()
-  const date = startOfDay(new Date())
+  const date = startOfDay(new Date().getTime())
   const today = date.getTime()
   useEffect(() => {
     if (!pbdb.authStore.isValid) {

@@ -1,3 +1,4 @@
+import { startOfDay } from 'date-fns'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { pbdb } from '../utils/db'
@@ -6,14 +7,15 @@ function Login() {
   const [username, setusername] = useState('')
   const [passowrd, setpassowrd] = useState('')
   const navigate = useNavigate()
-  const date = new Date().getTime()
+  const date = startOfDay(new Date().getTime())
+  const today = date.getTime()
   const handleLogin = async () => {
     await pbdb
       .collection('users')
       .authWithPassword(username, passowrd)
       .then((authData) => {
         if (authData.code !== 400) {
-          navigate(`/${date}`)
+          navigate(`/${today}`)
         }
       })
   }

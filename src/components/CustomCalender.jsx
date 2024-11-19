@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getWeekDates } from '../utils/date'
 function CustomCalender() {
-  const date = startOfDay(new Date())
+  const date = startOfDay(new Date().getTime())
   const today = date.getTime()
   const [activeWeek, setActiveWeek] = useState(getWeekDates(today))
   const [currentDate, setCurrentDate] = useState(today)
