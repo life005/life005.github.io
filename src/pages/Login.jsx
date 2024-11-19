@@ -7,8 +7,9 @@ function Login() {
   const [username, setusername] = useState('')
   const [passowrd, setpassowrd] = useState('')
   const navigate = useNavigate()
-  const date = startOfDay(new Date().getTime())
-  const today = date.getTime()
+  const date = new Date()
+  const startOfDayDate = startOfDay(date)
+  const today = startOfDayDate.getTime()
   const handleLogin = async () => {
     await pbdb
       .collection('users')

@@ -34,7 +34,7 @@ function Journal() {
   }, [dailyJournal])
 
   return (
-    <div className='sm:w-[500px] items-center p-2'>
+    <div className='items-center p-2'>
       <span className='flex flex-col border border-midnight-700 mt-5'>
         <span className='flex min-h-80 items-center bg-black'>
           {dailyJournal && (

@@ -14,6 +14,7 @@ import {
 import '@mdxeditor/editor/style.css'
 import { format } from 'date-fns'
 import { useEffect, useRef, useState } from 'react'
+import toast from 'react-hot-toast'
 import { useLocation } from 'react-router-dom'
 import { pbdb } from '../../utils/db'
 import Navigation from '../Navigation'
@@ -35,12 +36,34 @@ function EditorPage() {
       .getFirstListItem(filter)
       .then((record) => {
         if (record) {
-          pbdb.collection('journals').update(record.id, data)
+          pbdb
+            .collection('journals')
+            .update(record.id, data)
+            .then(() => {
+              toast.success('Saved !', {
+                style: {
+                  borderRadius: '10px',
+                  background: '#333',
+                  color: '#fff',
+                },
+              })
+            })
         }
       })
       .catch((err) => {
         if (err) {
-          pbdb.collection('journals').create(data)
+          pbdb
+            .collection('journals')
+            .create(data)
+            .then(() => {
+              toast.success('Saved !', {
+                style: {
+                  borderRadius: '10px',
+                  background: '#333',
+                  color: '#fff',
+                },
+              })
+            })
         }
       })
   }

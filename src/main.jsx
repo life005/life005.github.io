@@ -1,6 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Toaster } from 'react-hot-toast'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import App from './App.jsx'
 import EditorPage from './components/EditorPage/EditorPage.jsx'
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AnimatePresence>
       <BrowserRouter>
+        <Toaster position='bottom-center' reverseOrder={false} />
         <Routes>
           <Route path='/' element={<RootLayout />}>
             <Route path='/:date' element={<App />}>
