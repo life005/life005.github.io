@@ -1,4 +1,4 @@
-import { addWeeks, format, startOfDay } from 'date-fns'
+import { addWeeks, format, parse, startOfDay } from 'date-fns'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -25,10 +25,12 @@ function CustomCalender() {
     return format(currentDate, 'MMMM yyyy') // This gives you the active month and year
   }
   const handleDateClick = (date) => {
-    const clickedDate = startOfDay(new Date(date))
-    const navdate = clickedDate.getTime()
+    // Parse the date string in MM-dd-yyyy format to fix safari date bug
+    const selectedDate = parse(date, 'MM-dd-yyyy', new Date())
+    const startOfDayDate = startOfDay(selectedDate)
+    const clickedDate = startOfDayDate.getTime()
     setSelectedDate(clickedDate)
-    navigate(`/${navdate}`)
+    navigate(`/${clickedDate}`)
   }
 
   return (
