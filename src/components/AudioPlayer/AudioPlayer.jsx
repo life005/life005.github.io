@@ -1,7 +1,7 @@
 import { PauseIcon, PlayIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
-const AudioPlayer = ({ audioSrc, thumbnailSrc }) => {
+const AudioPlayer = ({ audioSrc, thumbnailSrc, title }) => {
   const audioRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -50,8 +50,9 @@ const AudioPlayer = ({ audioSrc, thumbnailSrc }) => {
   }, [isPlaying, duration])
 
   return (
-    <div className='flex w-full flex-col items-center justify-center h-full bg-gray-800 p-8'>
+    <div className='flex w-full p-2 flex-col items-center justify-center h-full bg-midnight-950 border border-midnight-700 gap-8'>
       {/* Thumbnail Image with Play/Pause Button */}
+      <div className='text-center text-2xl text-wrap font-bold'>{title}</div>
       <div
         className='relative h-[300px] w-[300px] cursor-pointer rounded-0 overflow-hidden shadow-2xl transition-all transform hover:scale-105'
         onClick={togglePlayPause}
@@ -70,10 +71,10 @@ const AudioPlayer = ({ audioSrc, thumbnailSrc }) => {
       <audio ref={audioRef} src={audioSrc} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleLoadedMetadata} />
 
       {/* Remaining Session Time */}
-      <div className='mt-6 text-center'>
+      <div className='text-center'>
         <p className='text-lg text-gray-300 flex gap-2 flex-col'>
-          <span>~Remaining~</span>
-          {formatTime(remainingTime)}
+          <span className='font-semibold'>~Remaining~</span>
+          <span className='text-4xl font-thin'>{formatTime(remainingTime)}</span>
         </p>
       </div>
     </div>

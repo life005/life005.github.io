@@ -40,7 +40,7 @@ const SessionList = () => {
   }
 
   return (
-    <div className='flex flex-col items-center bg-gray-800 p-8 '>
+    <div className='flex flex-col items-center bg-midnight-950 p-8 '>
       <span className='flex gap-2 w-full'>
         <h2 className='text-2xl text-gray-300 mb-6'>Mindfulness Sessions</h2>
       </span>
@@ -51,10 +51,10 @@ const SessionList = () => {
           {sessions.map((session, index) => (
             <li
               key={index}
-              className='flex gap-2 cursor-pointer p-4 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 transition'
+              className='flex gap-4 h-30 cursor-pointer p-2 border border-midnight-700 shadow-md hover:border-midnight-100 transition'
               onClick={() => handleSessionClick(session)}
             >
-              <div className='h-20 w-20 overflow-hidden rounded-lg'>
+              <div className='h-24 w-24 overflow-hidden'>
                 <img src={getFullImageUrl(session)} alt='Session Thumbnail' className='w-full h-full object-cover' />
               </div>
               <div className='flex flex-col gap-2'>
@@ -68,12 +68,16 @@ const SessionList = () => {
 
       {/* Show AudioPlayer in Fullscreen if session is selected */}
       {selectedSession && (
-        <div className='fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center'>
-          <div className='relative w-full h-full p-4 flex flex-col items-center justify-center bg-gray-900 rounded-lg'>
+        <div className='fixed inset-0 bg-midnight-900 bg-opacity-80 z-50 flex items-center justify-center'>
+          <div className='relative w-full h-full p-4 flex flex-col items-center justify-center bg-midnight-900  rounded-lg'>
             <button onClick={handleClosePlayer} className='absolute top-4 right-4 text-white bg-red-600 p-2'>
               <XSquare />
             </button>
-            <AudioPlayer audioSrc={getFullAudioUrl(selectedSession)} thumbnailSrc={getFullImageUrl(selectedSession)} />
+            <AudioPlayer
+              audioSrc={getFullAudioUrl(selectedSession)}
+              thumbnailSrc={getFullImageUrl(selectedSession)}
+              title={selectedSession.title}
+            />
           </div>
         </div>
       )}
