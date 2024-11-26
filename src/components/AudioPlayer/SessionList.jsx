@@ -1,18 +1,45 @@
-import { XSquare } from 'lucide-react' // Close icon
+import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { pbdb } from '../../utils/db'
 import AudioPlayer from './AudioPlayer' // Audio player component
 
 const SessionList = () => {
   const [sessions, setSessions] = useState([])
   const [selectedSession, setSelectedSession] = useState(null)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const temp_date = format(new Date(Number(location.pathname.split('/')[1])), 'yyyy:MM:dd')
 
   const handleSessionClick = (session) => {
     setSelectedSession(session)
   }
 
-  const handleClosePlayer = () => {
+  const handleClosePlayer = (session) => {
+    const data = {
+      session: session.id,
+      session_collection_id: session.collectionId,
+      session_title: session.title,
+      session_thumbnail: session.thumbnail,
+      user: pbdb.authStore.model.id,
+      duration: session.duration,
+      session_date: temp_date,
+    }
+    pbdb
+      .collection('mindfulness')
+      .create(data)
+      .then(() => {
+        toast.success('Session done !', {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        })
+      })
     setSelectedSession(null) // Close the audio player
+    navigate()
   }
 
   useEffect(() => {
@@ -40,13 +67,13 @@ const SessionList = () => {
   }
 
   return (
-    <div className='flex flex-col items-center bg-midnight-950 p-8 '>
+    <div className='flex flex-col items-center bg-midnight-950'>
       <span className='flex gap-2 w-full'>
-        <h2 className='text-2xl text-gray-300 mb-6'>Mindfulness Sessions</h2>
+        <h2 className='text-xl text-gray-300 mb-2'>Available Sessions</h2>
       </span>
 
       {/* List of Sessions */}
-      <div className='w-full max-w-xl h-screen'>
+      <div className='w-full max-w-xl'>
         <ul className='space-y-4'>
           {sessions.map((session, index) => (
             <li
@@ -70,13 +97,11 @@ const SessionList = () => {
       {selectedSession && (
         <div className='fixed inset-0 bg-midnight-900 bg-opacity-80 z-50 flex items-center justify-center'>
           <div className='relative w-full h-full p-4 flex flex-col items-center justify-center bg-midnight-900  rounded-lg'>
-            <button onClick={handleClosePlayer} className='absolute top-4 right-4 text-white bg-red-600 p-2'>
-              <XSquare />
-            </button>
             <AudioPlayer
+              handleClosePlayer={handleClosePlayer}
+              session={selectedSession}
               audioSrc={getFullAudioUrl(selectedSession)}
               thumbnailSrc={getFullImageUrl(selectedSession)}
-              title={selectedSession.title}
             />
           </div>
         </div>

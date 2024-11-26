@@ -1,7 +1,7 @@
-import { PauseIcon, PlayIcon } from 'lucide-react'
+import { PauseIcon, PlayIcon, XSquare } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
-const AudioPlayer = ({ audioSrc, thumbnailSrc, title }) => {
+const AudioPlayer = ({ audioSrc, thumbnailSrc, title, handleClosePlayer, session }) => {
   const audioRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -51,8 +51,14 @@ const AudioPlayer = ({ audioSrc, thumbnailSrc, title }) => {
 
   return (
     <div className='flex w-full p-2 flex-col items-center justify-center h-full bg-midnight-950 border border-midnight-700 gap-8'>
+      <button
+        onClick={() => handleClosePlayer({ ...session, duration: currentTime })}
+        className='absolute top-4 right-4 text-white bg-red-700 p-2'
+      >
+        <XSquare />
+      </button>
       {/* Thumbnail Image with Play/Pause Button */}
-      <div className='text-center text-2xl text-wrap font-bold'>{title}</div>
+      <div className='text-center text-2xl text-wrap font-bold'>{session.title}</div>
       <div
         className='relative h-[300px] w-[300px] cursor-pointer rounded-0 overflow-hidden shadow-2xl transition-all transform hover:scale-105'
         onClick={togglePlayPause}
