@@ -28,7 +28,7 @@ function TodaySessions() {
   return (
     <div className='flex flex-col items-center bg-midnight-950'>
       <span className='flex gap-2 w-full'>
-        <h2 className='text-2xl text-gray-300 mb-2'>Today Sessions</h2>
+        <h2 className='text-xl text-gray-300 mb-2'>Played Sessions</h2>
       </span>
 
       {/* List of Sessions */}

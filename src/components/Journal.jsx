@@ -1,5 +1,5 @@
 import { headingsPlugin, listsPlugin, markdownShortcutPlugin, MDXEditor, tablePlugin } from '@mdxeditor/editor'
-import { format } from 'date-fns'
+import { format, startOfDay } from 'date-fns'
 import { EditIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -8,13 +8,17 @@ import { pbdb } from '../utils/db'
 function Journal() {
   const location = useLocation()
   const navigate = useNavigate()
-
+  const [isItToday, setisItToday] = useState(true)
   const [dailyJournal, setdailyJournal] = useState('loading...')
   const editorRef = useRef()
   useEffect(() => {
     const temp_date = format(new Date(Number(location.pathname.split('/')[1])), 'yyyy:MM:dd')
     const filter = `journal_date="${temp_date.toString()}"&&createdby="${pbdb.authStore.model.id}"`
     setdailyJournal('No entry !')
+    const date = new Date()
+    const startOfDayDate = startOfDay(date)
+    const today = startOfDayDate.getTime()
+    setisItToday(Number(location.pathname.split('/')[1]) === today)
     pbdb
       .collection('journals')
       .getFirstListItem(filter)
@@ -50,12 +54,14 @@ function Journal() {
         </span>
       </span>
       <span className='flex justify-center'>
-        <button
-          onClick={() => navigate(`/editor${location.pathname}`)}
-          className='flex gap-4 bg-midnight-500 border border-midnight-500 bottom-4 right-4 hover:bg-midnight-700 text-white font-bold p-2 shadow-lg'
-        >
-          <EditIcon /> Edit
-        </button>
+        {isItToday && (
+          <button
+            onClick={() => navigate(`/editor${location.pathname}`)}
+            className='flex gap-4 bg-midnight-500 border border-midnight-500 bottom-4 right-4 hover:bg-midnight-700 text-white font-bold p-2 shadow-lg'
+          >
+            <EditIcon /> Write
+          </button>
+        )}
       </span>
     </div>
   )
