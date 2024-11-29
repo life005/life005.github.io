@@ -82,7 +82,11 @@ const SessionList = () => {
               onClick={() => handleSessionClick(session)}
             >
               <div className='h-24 w-24 overflow-hidden'>
-                <img src={getFullImageUrl(session)} alt='Session Thumbnail' className='w-full h-full object-cover' />
+                <img
+                  src={getFullImageUrl(session)}
+                  alt='Session Thumbnail'
+                  className='w-full h-full object-scale-down'
+                />
               </div>
               <div className='flex flex-col gap-2'>
                 <h3 className='text-xl text-white'>{session.title}</h3>

@@ -30,7 +30,11 @@ function TodaySessions() {
       <span className='flex gap-2 w-full'>
         <h2 className='text-xl text-gray-300 mb-2'>Played Sessions</h2>
       </span>
-
+      {sessions.length <= 0 && (
+        <span className='flex w-full'>
+          <h4>No sessions played !</h4>
+        </span>
+      )}
       {/* List of Sessions */}
       <div className='w-full max-w-xl'>
         <ul className='space-y-4'>
@@ -38,7 +42,11 @@ function TodaySessions() {
             sessions.map((session, index) => (
               <li key={index} className='flex gap-4 h-30 p-2 border border-midnight-500'>
                 <div className='h-14 w-14 overflow-hidden'>
-                  <img src={getFullImageUrl(session)} alt='Session Thumbnail' className='w-full h-full object-cover' />
+                  <img
+                    src={getFullImageUrl(session)}
+                    alt='Session Thumbnail'
+                    className='w-full h-full object-scale-down'
+                  />
                 </div>
                 <div className='flex flex-col gap-2'>
                   <h3 className='text-md text-white'>{session.session_title}</h3>

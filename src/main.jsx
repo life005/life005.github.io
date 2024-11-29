@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { Toaster } from 'react-hot-toast'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import App from './App.jsx'
+import BasicSettings from './components/BasicSettings.jsx'
 import EditorPage from './components/EditorPage/EditorPage.jsx'
 import './index.css'
 import FullPage from './Layouts/FullPage.jsx'
@@ -25,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </Route>
             <Route path='/about' element={<About />}></Route>
             <Route path='/editor/:date' element={<EditorPage />}></Route>
-            <Route path='/settings' element={<Settings />}></Route>
+            <Route path='/settings' element={<Settings />}>
+              <Route path='/settings/' element={<BasicSettings />}></Route>
+            </Route>
           </Route>
           <Route path='/login' element={<FullPage />}>
             <Route path='/login/' element={<Login />}></Route>
