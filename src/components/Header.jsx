@@ -6,10 +6,7 @@ function Header() {
   const navigate = useNavigate()
   const { name, username } = pbdb.authStore.model || { name: '', username: '' }
   return (
-    <div className='flex-col mb-2'>
-      <span>
-        <CustomCalender />
-      </span>
+    <div className='flex-col'>
       <span className='h-10 flex justify-between items-center p-2'>
         <span className='text-lg'>Hey {name || username} ! </span>
         <span>
@@ -17,6 +14,9 @@ function Header() {
             <EllipsisVerticalIcon size={24} className='text-gray-400' />
           </button>
         </span>
+      </span>
+      <span>
+        <CustomCalender />
       </span>
     </div>
   )

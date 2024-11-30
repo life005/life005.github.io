@@ -57,9 +57,9 @@ function Journal() {
         {isItToday && (
           <button
             onClick={() => navigate(`/editor${location.pathname}`)}
-            className='flex gap-4 bg-midnight-500 border border-midnight-500 bottom-4 right-4 hover:bg-midnight-700 text-white font-bold p-2 shadow-lg'
+            className='flex bg-midnight-500 border border-midnight-500 bottom-4 right-4 hover:bg-midnight-700 text-white font-bold p-2 shadow-lg'
           >
-            <EditIcon /> Write
+            <EditIcon /> <span className='mx-2'>Write</span>
           </button>
         )}
       </span>

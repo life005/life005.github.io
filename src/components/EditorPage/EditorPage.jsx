@@ -1,7 +1,6 @@
 import {
   BlockTypeSelect,
   BoldItalicUnderlineToggles,
-  InsertTable,
   ListsToggle,
   MDXEditor,
   UndoRedo,
@@ -15,12 +14,13 @@ import '@mdxeditor/editor/style.css'
 import { format } from 'date-fns'
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { pbdb } from '../../utils/db'
 import Navigation from '../Navigation'
 import './styles.css'
 function EditorPage() {
   const location = useLocation()
+  const navigate = useNavigate()
   const editorRef = useRef(null)
   const [dailyJournal, setdailyJournal] = useState('loading...')
   const handleSave = async (document) => {
@@ -47,6 +47,7 @@ function EditorPage() {
                   color: '#fff',
                 },
               })
+              navigate(-1)
             })
         }
       })
@@ -63,6 +64,7 @@ function EditorPage() {
                   color: '#fff',
                 },
               })
+              navigate(-1)
             })
         }
       })
@@ -99,7 +101,8 @@ function EditorPage() {
           ref={editorRef}
           contentEditableClassName='prose text-white'
           className='dark-theme h-[90vh] overflow-y-scroll scrollbar text-black pt-14'
-          markdown={'# Hi , Write something magical !'}
+          placeholder={'Hi , Write something magical !'}
+          markdown=''
           plugins={[
             listsPlugin(),
             headingsPlugin(),
@@ -112,7 +115,6 @@ function EditorPage() {
                   <BlockTypeSelect />
                   <BoldItalicUnderlineToggles />
                   <ListsToggle />
-                  <InsertTable />
                 </div>
               ),
             }),

@@ -35,9 +35,6 @@ function CustomCalender() {
 
   return (
     <div className='flex-col'>
-      <div className='flex items-center justify-center border border-midnight-800 mx-24 border-b-0'>
-        {getActiveMonthYear()}
-      </div>
       <div className='flex justify-between items-center'>
         <span>
           <button onClick={() => handlePreviousWeek()} className='p-2'>
@@ -71,6 +68,9 @@ function CustomCalender() {
             <ChevronRightIcon />
           </button>
         </span>
+      </div>
+      <div className='flex items-center justify-center border border-midnight-800 mx-24  border-t-0'>
+        {getActiveMonthYear()}
       </div>
     </div>
   )

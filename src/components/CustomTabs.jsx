@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 function CustomTabs({ activeTab, setactiveTab }) {
   return (
-    <div className='grid grid-cols-3 border-b border-blue-500 mt-4'>
+    <div className='grid grid-cols-3 border-b border-blue-500'>
       <button
         className={`py-2 col-span-1  border-blue-900 text-center ${activeTab === 'journal' ? 'border-t-4' : ''}`}
         onClick={() => setactiveTab('journal')}

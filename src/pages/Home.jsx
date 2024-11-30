@@ -7,16 +7,13 @@ function Home() {
   const [activeTab, setactiveTab] = useState('journal')
 
   return (
-    <div className='flex flex-col justify-between h-[80vh]'>
-      {/* Main Content */}
+    <div className='flex flex-col h-[84vh]'>
+      <span>
+        <CustomTabs activeTab={activeTab} setactiveTab={setactiveTab} />
+      </span>
       <span className='flex-1 overflow-y-auto scrollbar'>
         {activeTab === 'journal' && <Journal />}
         {activeTab === 'mindfulness' && <Mindfulness />}
-      </span>
-
-      {/* Tabs */}
-      <span>
-        <CustomTabs activeTab={activeTab} setactiveTab={setactiveTab} />
       </span>
     </div>
   )
