@@ -15,13 +15,12 @@ function App() {
 
   return (
     <div className='flex flex-col justify-between sm:items-center bg-midnight-950 text-midnight-50 h-screen w-screen'>
-      <div className='bg-midnight-950 shadow mb-2'>
-        <Header />
-      </div>
       <div className='sm:w-[600px]'>
         <Outlet />
       </div>
-
+      <div className='bg-midnight-950 shadow mb-2'>
+        <Header />
+      </div>
       <PWABadge />
     </div>
   )

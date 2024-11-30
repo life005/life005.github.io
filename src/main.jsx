@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AnimatePresence>
       <BrowserRouter>
-        <Toaster position='top-center' reverseOrder={false} />
+        <Toaster position='bottom-center' reverseOrder={false} />
         <Routes>
           <Route path='/' element={<RootLayout />}>
             <Route path='/:date' element={<App />}>
