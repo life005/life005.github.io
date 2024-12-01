@@ -32,6 +32,7 @@ export default defineConfig({
       globPatterns: ['**/*'],
       cleanupOutdatedCaches: true,
       clientsClaim: true,
+      maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
       runtimeCaching:[
         {
           urlPattern: /\.(?:js|jsx|css|html|png|jpg|jpeg|svg|gif|webp|woff2?|ttf|otf|json|mp4|webm|ogg)$/, // Cache all static assets
