@@ -1,15 +1,14 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { pbdb } from '../../utils/db'
+import { useLocation } from 'react-router-dom'
+import { pbdb } from '../utils/db'
 import AudioPlayer from './AudioPlayer' // Audio player component
 
 const SessionList = () => {
   const [sessions, setSessions] = useState([])
   const [selectedSession, setSelectedSession] = useState(null)
   const location = useLocation()
-  const navigate = useNavigate()
   const temp_date = format(new Date(Number(location.pathname.split('/')[1])), 'yyyy:MM:dd')
 
   const handleSessionClick = (session) => {
@@ -37,9 +36,8 @@ const SessionList = () => {
             color: '#fff',
           },
         })
+        setSelectedSession(null) // Close the audio player
       })
-    setSelectedSession(null) // Close the audio player
-    navigate()
   }
 
   useEffect(() => {
@@ -75,25 +73,26 @@ const SessionList = () => {
       {/* List of Sessions */}
       <div className='w-full max-w-xl'>
         <ul className='space-y-4'>
-          {sessions.map((session, index) => (
-            <li
-              key={index}
-              className='flex gap-4 h-30 cursor-pointer p-2 border border-midnight-700 shadow-md hover:border-midnight-100 transition'
-              onClick={() => handleSessionClick(session)}
-            >
-              <div className='h-24 w-24 overflow-hidden'>
-                <img
-                  src={getFullImageUrl(session)}
-                  alt='Session Thumbnail'
-                  className='w-full h-full object-scale-down'
-                />
-              </div>
-              <div className='flex flex-col gap-2'>
-                <h3 className='text-xl text-white'>{session.title}</h3>
-                <p className='text-gray-400'>{`Duration: ${formatDuration(session.duration)}`}</p>
-              </div>
-            </li>
-          ))}
+          {sessions &&
+            sessions.map((session, index) => (
+              <li
+                key={index}
+                className='flex gap-4 h-30 cursor-pointer p-2 border border-midnight-700 shadow-md hover:border-midnight-100 transition'
+                onClick={() => handleSessionClick(session)}
+              >
+                <div className='h-24 w-24 overflow-hidden'>
+                  <img
+                    src={getFullImageUrl(session)}
+                    alt='Session Thumbnail'
+                    className='w-full h-full object-scale-down'
+                  />
+                </div>
+                <div className='flex flex-col gap-2'>
+                  <h3 className='text-xl text-white'>{session.title}</h3>
+                  <p className='text-gray-400'>{`Duration: ${formatDuration(session.duration)}`}</p>
+                </div>
+              </li>
+            ))}
         </ul>
       </div>
 

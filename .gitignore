@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 db
+scripts
+.venv
 dist-ssr
 dev-dist
 *.local

@@ -1,7 +1,7 @@
 import { startOfDay } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import SessionList from './AudioPlayer/SessionList'
+import SessionList from './SessionList'
 import TodaySessions from './TodaySessions'
 
 function Mindfulness() {
