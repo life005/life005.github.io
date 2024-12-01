@@ -1,16 +1,21 @@
 import { debounce } from 'lodash'
 import { MinusSquare, PlusIcon, XIcon } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import indb from '../utils/indb'
-
 function CalorieTracker() {
   const [showAddPopup, setshowAddPopup] = useState(false)
-  const indb_data = indb
+  const [indbData, setindbData] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const handleSearchDebounced = debounce((value) => {
     handleSearch(value)
   }, 300)
+
+  useEffect(() => {
+    fetch('/indb.js')
+      .then((response) => response.json())
+      .then((data) => setindbData(data))
+  }, [])
+
   const onChangeSearch = (value) => {
     setSearchTerm(value)
     handleSearchDebounced(value)
@@ -22,7 +27,7 @@ function CalorieTracker() {
     if (searchkey === '' || searchkey === null) {
       setSearchResults([])
     }
-    setSearchResults(indb_data.map((item) => (item.food_name.includes(searchkey) ? { ...item, match: true } : item)))
+    setSearchResults(indbData.map((item) => (item.food_name.includes(searchkey) ? { ...item, match: true } : item)))
   }
 
   const addToTempTable = (item) => {
