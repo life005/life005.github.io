@@ -65,9 +65,9 @@ const SessionList = () => {
   }
 
   return (
-    <div className='flex flex-col items-center bg-midnight-950'>
+    <div className='flex flex-col items-center dark:bg-midnight-950'>
       <span className='flex gap-2 w-full'>
-        <h2 className='text-xl text-gray-300 mb-2'>Available Sessions</h2>
+        <h2 className='text-xl  mb-2'>Available Sessions</h2>
       </span>
 
       {/* List of Sessions */}
@@ -77,7 +77,7 @@ const SessionList = () => {
             sessions.map((session, index) => (
               <li
                 key={index}
-                className='flex gap-4 h-30 cursor-pointer p-2 border border-midnight-700 shadow-md hover:border-midnight-100 transition'
+                className='flex gap-4 h-30 cursor-pointer p-2 border dark:border-midnight-700 shadow-md hover:border-midnight-100 transition'
                 onClick={() => handleSessionClick(session)}
               >
                 <div className='h-24 w-24 overflow-hidden'>
@@ -88,8 +88,8 @@ const SessionList = () => {
                   />
                 </div>
                 <div className='flex flex-col gap-2'>
-                  <h3 className='text-xl text-white'>{session.title}</h3>
-                  <p className='text-gray-400'>{`Duration: ${formatDuration(session.duration)}`}</p>
+                  <h3 className='text-xl '>{session.title}</h3>
+                  <p className='text-gray-500'>{`Duration: ${formatDuration(session.duration)}`}</p>
                 </div>
               </li>
             ))}
@@ -98,8 +98,8 @@ const SessionList = () => {
 
       {/* Show AudioPlayer in Fullscreen if session is selected */}
       {selectedSession && (
-        <div className='fixed inset-0 bg-midnight-900 bg-opacity-80 z-50 flex items-center justify-center'>
-          <div className='relative w-full h-full p-4 flex flex-col items-center justify-center bg-midnight-900  rounded-lg'>
+        <div className='fixed inset-0 bg-white dark:bg-midnight-900  z-50 flex items-center justify-center'>
+          <div className='relative w-full h-full p-4 flex flex-col items-center justify-center dark:bg-midnight-900  rounded-lg'>
             <AudioPlayer
               handleClosePlayer={handleClosePlayer}
               session={selectedSession}

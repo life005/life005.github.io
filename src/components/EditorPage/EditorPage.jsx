@@ -92,15 +92,15 @@ function EditorPage() {
 
   // Renders the editor instance using a React component.
   return (
-    <div className='bg-midnight-950 '>
+    <div className='dark:bg-midnight-950 bg-white dark:text-white'>
       <span className='z-10 fixed w-full'>
         <Navigation title={'Editor'} />
       </span>
-      <span className=''>
+      <span className='border'>
         <MDXEditor
           ref={editorRef}
-          contentEditableClassName='prose text-white'
-          className='dark-theme h-[90vh] overflow-y-scroll scrollbar text-black pt-14'
+          contentEditableClassName='prose'
+          className='dark:dark-theme h-[84vh] overflow-y-scroll scrollbar text-black mt-8'
           placeholder={'Hi , Write something magical !'}
           markdown=''
           plugins={[
@@ -123,7 +123,7 @@ function EditorPage() {
       </span>
       <span className='flex justify-center'>
         <button
-          className='w-20 text-white h-10 border border-midnight-700 hover:border-white'
+          className='w-20 h-10 border dark:border-midnight-700 hover:dark:border-white'
           onClick={() => handleSave(editorRef.current?.getMarkdown())}
         >
           Save

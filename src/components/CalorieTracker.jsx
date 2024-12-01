@@ -45,20 +45,20 @@ function CalorieTracker() {
   }, 300)
 
   return (
-    <div>
+    <div className='w-full'>
       <span className='flex h-[70vh]'>
         <span></span>
       </span>
       <span className='justify-center flex'>
         {!showAddPopup && (
-          <button onClick={() => setshowAddPopup(true)} className='flex p-2 bg-midnight-700'>
+          <button onClick={() => setshowAddPopup(true)} className='flex p-2 border dark:bg-midnight-700'>
             <PlusIcon /> <span className='mx-2'>Add</span>
           </button>
         )}
       </span>
       {showAddPopup && (
-        <span className='absolute top-0 bg-black flex h-[78vh] w-full p-2'>
-          <span className='p-2 flex flex-col border border-midnight-500 w-full gap-2'>
+        <span className='absolute top-0  w-full left-0 bg-white dark:bg-black flex h-[78vh]  p-2'>
+          <span className='p-2 flex flex-col border dark:border-midnight-500 w-full gap-2'>
             <span className='flex justify-between'>
               <span className='gap-2 flex'>
                 <span className='text-green-500'>
@@ -73,7 +73,7 @@ function CalorieTracker() {
               </span>
             </span>
             <span>
-              <div className='flex items-center bg-gray-800  p-2'>
+              <div className='flex items-center dark:bg-gray-800  p-2'>
                 <label htmlFor='searchbox' className='sr-only'>
                   Search Food
                 </label>
@@ -82,18 +82,18 @@ function CalorieTracker() {
                   onChange={(e) => onChangeSearch(e.target.value)}
                   type='text'
                   placeholder='search food'
-                  className='w-full bg-gray-800 text-white placeholder-gray-400 outline-none ml-2'
+                  className='w-full dark:bg-gray-800 dark:text-white placeholder-gray-400 outline-none border p-2'
                 />
               </div>
               {searchResults.length > 0 && (
-                <span className='h-40 overflow-y-scroll scrollbar flex flex-col bg-midnight-800'>
+                <span className='h-40 border overflow-y-scroll scrollbar flex flex-col dark:bg-midnight-800'>
                   {searchResults.map(
                     (item) =>
                       item.match == true && (
                         <button
                           key={item.food_code}
                           onClick={() => addToTempTable(item)}
-                          className='flex justify-between p-2'
+                          className='flex justify-between p-2 border'
                         >
                           <span className='flex text-wrap'>{item.food_name}</span>
                           <span>{parseFloat(item.energy_kcal).toFixed(2)} kcal</span>
@@ -103,7 +103,7 @@ function CalorieTracker() {
                 </span>
               )}
             </span>
-            <span className='flex w-full divide-y-2 divide-midnight-400 flex-col h-70 overflow-y-scroll scrollbar'>
+            <span className='flex w-full divide-y-2 dark:divide-midnight-400 flex-col h-70 overflow-y-scroll scrollbar'>
               {tempTable &&
                 tempTable.map((item) => (
                   <span key={item.food_code} className='flex flex-col gap-2 p-2  w-full'>
@@ -123,7 +123,7 @@ function CalorieTracker() {
                 ))}
             </span>
             <span className='flex justify-center'>
-              <button className='border px-2 border-green-500'>Add</button>
+              <button className='border p-2 border-green-500'>Add</button>
             </span>
           </span>
         </span>

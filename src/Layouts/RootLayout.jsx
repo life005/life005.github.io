@@ -6,9 +6,18 @@ import { pbdb } from '../utils/db.js'
 
 function RootLayout() {
   const navigate = useNavigate()
+
   const date = new Date()
   const startOfDayDate = startOfDay(date)
   const today = startOfDayDate.getTime()
+  useEffect(() => {
+    if (localStorage.getItem('life-theme') === 'dark') {
+      document.body.classList.add('dark')
+    } else {
+      document.body.classList.remove('dark')
+    }
+  }, [])
+
   useEffect(() => {
     if (!pbdb.authStore.isValid) {
       navigate('/login')
@@ -16,6 +25,7 @@ function RootLayout() {
       navigate(`/${today}`)
     }
   }, [])
+
   return (
     <div>
       <Outlet />

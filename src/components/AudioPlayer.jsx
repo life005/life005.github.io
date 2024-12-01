@@ -50,7 +50,7 @@ const AudioPlayer = ({ audioSrc, thumbnailSrc, title, handleClosePlayer, session
   }, [isPlaying, duration])
 
   return (
-    <div className='flex w-full p-2 flex-col items-center justify-center h-full bg-midnight-950 border border-midnight-700 gap-8'>
+    <div className='flex w-full p-2 flex-col bg-white items-center justify-center h-full dark:bg-midnight-950 border dark:border-midnight-700 gap-8'>
       <button
         onClick={() => handleClosePlayer({ ...session, duration: currentTime })}
         className='absolute top-4 right-4 text-white bg-red-700 p-2'
@@ -78,7 +78,7 @@ const AudioPlayer = ({ audioSrc, thumbnailSrc, title, handleClosePlayer, session
 
       {/* Remaining Session Time */}
       <div className='text-center'>
-        <p className='text-lg text-gray-300 flex gap-2 flex-col'>
+        <p className='text-lg text-gray-500 flex gap-2 flex-col'>
           <span className='font-semibold'>~Remaining~</span>
           <span className='text-4xl font-thin'>{formatTime(remainingTime)}</span>
         </p>

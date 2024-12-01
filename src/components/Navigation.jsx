@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 function Navigation({ title }) {
   const navigate = useNavigate()
   return (
-    <div className='flex justify-between p-2 text-midnight-50 bg-midnight-900'>
+    <div className='flex bg-white justify-between p-2 text-black dark:text-midnight-50 dark:bg-midnight-900 shadow'>
       <span>
         <button onClick={() => navigate(-1)} className='px-2 '>
           <MoveLeftIcon />

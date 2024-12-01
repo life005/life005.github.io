@@ -26,9 +26,9 @@ function TodaySessions() {
       })
   }, [temp_date])
   return (
-    <div className='flex flex-col items-center bg-midnight-950'>
+    <div className='flex flex-col items-center dark:bg-midnight-950'>
       <span className='flex gap-2 w-full'>
-        <h2 className='text-xl text-gray-300 mb-2'>Played Sessions</h2>
+        <h2 className='text-xl mb-2'>Played Sessions</h2>
       </span>
       {sessions.length <= 0 && (
         <span className='flex w-full'>
@@ -40,7 +40,7 @@ function TodaySessions() {
         <ul className='space-y-4'>
           {sessions &&
             sessions.map((session, index) => (
-              <li key={index} className='flex gap-4 h-30 p-2 border border-midnight-500'>
+              <li key={index} className='flex gap-4 h-30 p-2 border dark:border-midnight-500'>
                 <div className='h-14 w-14 overflow-hidden'>
                   <img
                     src={getFullImageUrl(session)}
@@ -49,8 +49,8 @@ function TodaySessions() {
                   />
                 </div>
                 <div className='flex flex-col gap-2'>
-                  <h3 className='text-md text-white'>{session.session_title}</h3>
-                  <p className='text-gray-400'>{`In session for ${formatDuration(parseInt(session.duration))}`}</p>
+                  <h3 className='text-md'>{session.session_title}</h3>
+                  <p className='text-gray-500'>{`In session for ${formatDuration(parseInt(session.duration))}`}</p>
                 </div>
               </li>
             ))}

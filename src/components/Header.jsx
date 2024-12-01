@@ -14,7 +14,7 @@ function Header() {
         <span className='text-lg'>Hey {name || username} ! </span>
         <span>
           <button onClick={() => navigate('/settings')}>
-            <EllipsisVerticalIcon size={24} className='text-gray-400' />
+            <EllipsisVerticalIcon size={24} className='text-black dark:text-midnight-700' />
           </button>
         </span>
       </span>

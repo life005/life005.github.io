@@ -39,8 +39,8 @@ function Journal() {
 
   return (
     <div className='items-center p-2'>
-      <span className='flex flex-col border border-midnight-700 mt-5'>
-        <span className='flex min-h-80 items-center bg-black'>
+      <span className='flex flex-col border dark:border-midnight-700 mt-5'>
+        <span className='flex min-h-80 items-center dark:bg-black'>
           {dailyJournal && (
             <MDXEditor
               ref={editorRef}
@@ -57,7 +57,7 @@ function Journal() {
         {isItToday && (
           <button
             onClick={() => navigate(`/editor${location.pathname}`)}
-            className='flex bg-midnight-500 border border-midnight-500 bottom-4 right-4 hover:bg-midnight-700 text-white font-bold p-2 shadow-lg'
+            className='flex dark:bg-midnight-500 border dark:border-midnight-500 bottom-4 right-4 hover:dark:bg-midnight-700 dark:text-white font-bold p-2 shadow-lg'
           >
             <EditIcon /> <span className='mx-2'>Write</span>
           </button>
